@@ -15,6 +15,13 @@ namespace Gym_Membership_Managment_System.Context.Configuration
             builder.Property(m => m.Name)
                 .IsRequired()
                 .HasMaxLength(100);
+
+            builder.Property(m => m.Email)
+                .IsRequired()
+                .HasMaxLength(254);
+
+            builder.Property(m => m.PhoneNumber)
+                .HasMaxLength(25);
         }
     }
 }
