@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Gym_Membership_Managment_System
 {
-    internal class Program
+    public class Program
     {
 
         static void Main(string[] args)
@@ -20,14 +20,21 @@ namespace Gym_Membership_Managment_System
 
                 string connectionString = configuration.GetConnectionString("constr")
                     ?? throw new InvalidOperationException("Connection string 'constr' not found.");
-        
+
                 var service = new ServiceCollection();
         
                 service.AddDbContext<GymManagementDbContext>(options =>
                     options.UseSqlServer(connectionString));
-        
-                
+
+            using var serviceProvider = service.BuildServiceProvider();
+            using var scope = serviceProvider.CreateScope();
+
+            var context = scope.ServiceProvider
+                .GetRequiredService<GymManagementDbContext>();
+
+            Console.WriteLine($"Database reachable: {context.Database.CanConnect()}");
         }
-        
+
     }
+
 }

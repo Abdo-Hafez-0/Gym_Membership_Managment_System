@@ -1,9 +1,8 @@
-﻿
-using Gym_Membership_Managment_System.Models;
+﻿using Gym_Membership_Managment_System.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Gym_Membership_Managment_System.Context.Configuration
+namespace Gym_Membership_Managment_System.Configuration
 {
     public class MembershipPlanConfiguration : IEntityTypeConfiguration<MembershipPlan>
     {
